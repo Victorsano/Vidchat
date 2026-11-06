@@ -1,0 +1,10 @@
+import { createServer } from 'node:http';
+import next from 'next';
+import { attachSignaling } from './signaling';
+const port=Number(process.env.PORT || 3000);
+const app=next({dev:process.env.NODE_ENV !== 'production',hostname:'0.0.0.0',port});
+await app.prepare();
+const handler=app.getRequestHandler();
+const server=createServer((req,res)=>handler(req,res));
+attachSignaling(server);
+server.listen(port,'0.0.0.0',()=>console.log(`MATCH ready at http://localhost:${port}`));
