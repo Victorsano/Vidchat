@@ -76,3 +76,11 @@ The automated test uses real WebSocket clients to verify shared membership, dire
 Commit this project to a GitHub repository. In Render, select **New → Blueprint**, connect that repository, and apply `render.yaml`. Alternatively select **New → Web Service**, connect the repository, choose **Node** and **Free**, set build command to `npm ci --include=dev && npm run build` and start command to `npm start`. Render supplies `PORT` and HTTPS automatically. Use one instance; all callers must open the same `https://…onrender.com` URL. WebSocket signaling upgrades at `/signal` on this same address.
 
 The free instance can sleep when inactive; opening the site may take a minute to wake it. Monthly free usage limits apply. Restarts/deployments disconnect all participants. No paid plan is required for this proof of concept. After deployment repeat the phone/PC checklist above using the Render URL instead of a tunnel.
+
+## Face filters
+
+After joining, choose **None**, **Bunny ears**, **Nose mask**, or **Eye patch** under the video tiles. Face detection runs locally with MediaPipe Tasks Vision; model and WebAssembly assets are served by this app. No photos or landmarks are uploaded for detection. Other participants receive the composited video through WebRTC. The face detector loads only when you choose a filter; allow a few seconds on a mobile connection. Center one face in good light. Overlays disappear when a face is no longer detected. These are lightweight 2D effects, not Snapchat SDK integration.
+
+Detection runs at most 10 times per second; video composition targets 24 fps. Turning the camera off disables the source camera track and outgoing video. Leaving stops camera, audio, detector and canvas capture. If canvas capture is unavailable, the call uses the original camera and disables filter selection. On load failure, select None or another filter to retry. Device performance and background-tab throttling can reduce frame rate; physical phone/PC validation is still required.
+
+MediaPipe Tasks Vision and its bundled WASM assets are Apache-2.0 licensed; the package license is retained in `public/face-effects/`. The BlazeFace short-range model is from Google's public MediaPipe model distribution.
