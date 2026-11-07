@@ -1,0 +1,1286 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  height: auto;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.dorcas-app {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.dm-mark,
+.dm-brand > span:last-child,
+.dorcas-app h1,
+.dorcas-app h2,
+.dorcas-app h3 {
+  font-family: Manrope, Arial, Helvetica, sans-serif;
+}
+.dm-header {
+  position: relative;
+  z-index: 3;
+}
+.dm-header-icon {
+  position: relative;
+}
+.real-unread {
+  position: absolute;
+  right: 4px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b7cf8b;
+}
+.real-avatar {
+  display: grid !important;
+  place-items: center;
+  background: linear-gradient(135deg, #ceb7d8, #e3cbb4);
+  color: #fff7ec;
+  font: 500 54px Arial;
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+}
+.dm-avatar .real-avatar {
+  font-size: 18px;
+}
+.dm-person-photo .real-avatar {
+  position: absolute;
+  inset: 0;
+}
+.real-auth {
+  max-width: 480px;
+  margin: 28px auto;
+  padding: 32px;
+  border: 1px solid #d7c3ac;
+  background: #fff8edc9;
+  border-radius: 25px 19px 27px 20px;
+  box-shadow: 0 5px 0 #c5af93;
+}
+.real-auth h1 {
+  font: 600 38px/1.2 Arial;
+  letter-spacing: -1.4px;
+  max-width: none;
+}
+.real-auth h1 em {
+  font: italic 40px Georgia;
+  color: #a07aa4;
+}
+.real-auth > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #977b90;
+}
+.real-auth label,
+.real-form-fields label,
+.real-private-fields label,
+.real-post-form label,
+.real-review-label,
+.dm-sheet label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #8e718b;
+  margin: 17px 0;
+}
+.real-auth input,
+.real-form-fields input,
+.real-form-fields textarea,
+.real-private-fields input[type="date"],
+.real-post-form textarea,
+.real-review-label textarea,
+.dm-sheet input,
+.dm-sheet textarea,
+.dm-sheet select {
+  display: block;
+  width: 100%;
+  font: 400 16px/1.6 Arial;
+  color: #735775;
+  background: #fffaf2;
+  border: 1px solid #d8c1d6;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 7px;
+  max-width: 100%;
+}
+.real-form-fields h3,
+.real-photo-manager h3 {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #7c5d7b;
+  margin: 24px 0 13px;
+}
+.real-form-fields .phone-interest-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.real-form-fields .phone-interest-chips > button {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid #d9c5ae;
+  background: #f8eee0;
+  border-radius: 18px 13px 20px 14px;
+  color: #9a7c90;
+  font-size: 12px;
+  box-shadow: 0 2px 0 #d5bfa4;
+}
+.real-form-fields .phone-interest-chips > button.chosen {
+  background: #decfe6;
+  border-color: #c5aace;
+  color: #895c99;
+  box-shadow: 0 2px 0 #bfa3cb;
+}
+.real-onboarding {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff7eac9;
+  border: 1px solid #d8c4ac;
+  border-radius: 24px;
+  padding: 28px;
+}
+.real-onboarding h1 {
+  font-size: 32px;
+  line-height: 1.25;
+  max-width: none;
+  letter-spacing: -1px;
+}
+.real-onboarding > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #94778e;
+}
+.real-private-fields {
+  padding: 19px;
+  border: 1px solid #d2bccf;
+  background: #e9deed8c;
+  border-radius: 17px;
+  margin-top: 25px;
+}
+.real-private-fields h3 {
+  font-size: 16px;
+  color: #8f6b9b;
+  margin-top: 0;
+}
+.real-private-fields small {
+  font-size: 10px;
+  color: #a087a9;
+}
+.real-checkbox {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+  color: #96768f;
+  margin: 20px 0;
+}
+.real-checkbox input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #a480b6;
+  margin-top: 2px;
+}
+.real-age-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.real-photo-manager {
+  border: 1px solid #dbc5ad;
+  background: #faf2e4c9;
+  border-radius: 19px;
+  padding: 20px;
+  margin-top: 25px;
+}
+.real-photo-manager > p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #a38a9b;
+}
+.real-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px dashed #bfa3ca;
+  color: #a17bad;
+  background: #e9ddef77;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.real-upload input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.real-photo-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-top: 16px;
+}
+.real-photo-list > div {
+  position: relative;
+  min-width: 0;
+}
+.real-photo-list img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #d7c0ad;
+  border-radius: 10px;
+}
+.real-photo-list span {
+  display: block;
+  font-size: 9px;
+  color: #a585a0;
+  margin-top: 5px;
+}
+.real-photo-list button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  height: 30px;
+  width: 30px;
+  background: #fff8eae6;
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: #96719c;
+}
+.real-error {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  margin: 13px 25px;
+  border: 1px solid #dcbba8;
+  background: #fff0e3;
+  color: #995f57;
+  border-radius: 13px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.real-error button {
+  display: grid;
+  place-items: center;
+  min-width: 35px;
+  min-height: 35px;
+  color: #a47165;
+}
+.real-loading {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  color: #a185a3;
+  font-size: 13px;
+}
+.real-profile-photo {
+  height: 280px;
+  overflow: hidden;
+}
+.real-profile-photo > img,
+.real-profile-photo > .real-avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.real-inline-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 19px 0 0;
+}
+.real-inline-actions button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border: 1px solid #d0b4d1;
+  border-radius: 10px;
+  background: #e9dced;
+  color: #a07ca8;
+  font-size: 12px;
+}
+.dm-sheet input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+.real-danger {
+  color: #a56f71;
+}
+.real-review-card {
+  padding: 20px;
+  border: 1px solid #d8c0a6;
+  background: #fff6e8dd;
+  border-radius: 17px;
+  margin: 19px 0;
+}
+.real-review-card h3 {
+  font-size: 18px;
+  color: #8f6997;
+  margin: 0 0 12px;
+}
+.real-review-card > p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #a08598;
+  overflow-wrap: anywhere;
+}
+.real-review-card img {
+  max-height: 220px;
+  max-width: 100%;
+  border: 1px solid #d8bda4;
+  border-radius: 12px;
+  margin-bottom: 17px;
+}
+.real-review-card > button {
+  min-height: 44px;
+  color: #9f79aa;
+  background: #e9dbee;
+  border: 1px solid #d0b2da;
+  padding: 10px 13px;
+  margin: 5px 8px 5px 0;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.real-review-card button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.real-queue-orbit {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px dashed #d3b6df;
+  background: #e9daef66;
+  color: #b394c0;
+  display: grid;
+  place-items: center;
+  margin: 24px auto;
+  animation: queue-pulse 2.5s ease-in-out infinite;
+}
+.real-messenger {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  min-height: 540px;
+  height: calc(100dvh - 165px);
+  border: 1px solid #d8c1aa;
+  border-radius: 23px;
+  background: #fff8ed;
+  overflow: hidden;
+}
+.real-inbox {
+  padding: 23px 15px;
+  background: #eee4d7;
+  border-right: 1px solid #d6c0a6;
+  overflow: auto;
+}
+.real-inbox .dm-page-title {
+  padding: 0 9px;
+}
+.real-inbox h1 {
+  font-size: 28px;
+}
+.real-thread {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 12px;
+  width: 100%;
+  text-align: left;
+  border-radius: 13px;
+  border: 1px solid transparent;
+}
+.real-thread.selected {
+  background: #e4d4e8;
+  border-color: #cdb1d5;
+  box-shadow: 0 2px 0 #c4a7cd;
+}
+.real-thread > img,
+.real-thread > .real-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.real-thread > span {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+.real-thread strong {
+  font-size: 13px;
+  color: #87618d;
+  font-weight: 600;
+}
+.real-thread small {
+  font-size: 11px;
+  color: #a08497;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  margin-top: 7px;
+  line-height: 1.6;
+}
+.real-thread b {
+  font-size: 9px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  background: #b99ac7;
+  color: #fff7ec;
+}
+.real-conversation {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.real-thread-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 15px 18px;
+  border-bottom: 1px solid #e2cfb8;
+  min-height: 75px;
+}
+.real-chat-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 0;
+  min-width: 0;
+  text-align: left;
+}
+.real-chat-person > img,
+.real-chat-person > .real-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.real-chat-person strong {
+  font-size: 13px;
+  color: #83608b;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.real-thread-header > button:not(.real-chat-person) {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #aa85b5;
+}
+.real-chat-back {
+  display: none !important;
+}
+.real-chat-body {
+  padding: 26px;
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overscroll-behavior: contain;
+}
+.real-chat-welcome {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 35px;
+  color: #b596c0;
+}
+.real-chat-welcome h3 {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #96759f;
+  font-weight: 500;
+}
+.real-chat-welcome p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #ac91ae;
+}
+.real-message {
+  max-width: 84%;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+.real-message p {
+  background: #eee4d8;
+  border: 1px solid #ddc7ac;
+  box-shadow: 0 2px 0 #d1b99c;
+  padding: 13px 16px;
+  border-radius: 17px 17px 17px 4px;
+  margin: 0;
+  color: #987c8c;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.real-message time {
+  font-size: 8px;
+  color: #ae91a5;
+  margin: 7px 4px;
+}
+.real-message.mine {
+  align-self: flex-end;
+}
+.real-message.mine p {
+  background: linear-gradient(135deg, #ac87bb, #9670ac);
+  border-color: #aa84b7;
+  color: #fff8ed;
+  border-radius: 17px 17px 4px 17px;
+  box-shadow: 0 2px 0 #805d9633;
+}
+.real-message.mine time {
+  text-align: right;
+}
+.real-composer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  margin: 13px 18px 17px;
+  border: 1px solid #d9c1ab;
+  background: #fffaf2;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 #dfcbb0;
+}
+.real-composer textarea {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: none;
+  padding: 9px;
+  font: 400 16px/1.5 Arial;
+  color: #8b6797;
+  max-height: 120px;
+}
+.real-composer button {
+  width: 43px;
+  height: 43px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: #ad87bc;
+  color: #fff8ec;
+  border: 1px solid #bd98c8;
+  flex-shrink: 0;
+}
+.real-composer button:disabled {
+  background: #e7d9e6;
+  color: #c9acc9;
+  cursor: default;
+}
+.real-swipe-stage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  isolation: isolate;
+  margin: 0 7px;
+}
+.real-swipe-stage:before {
+  content: "";
+  position: absolute;
+  inset: 6px -4px -6px;
+  background: repeating-linear-gradient(
+    176deg,
+    #dfcab3 0 12px,
+    #c0a78c 13px 16px,
+    #ead9c4 17px 28px
+  );
+  border: 1px solid #bca188;
+  border-radius: 24px;
+  z-index: -1;
+  transform: rotate(1.5deg);
+}
+.real-swipe-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 23px 19px 25px 18px;
+  overflow: hidden;
+  border: 1px solid #d5bd9f;
+  touch-action: pan-y;
+  box-shadow: 0 8px 23px #6a4e3a22;
+}
+.real-swipe-card > img,
+.real-swipe-card > .real-avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.real-card-open {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  display: grid;
+  place-items: center;
+  background: #fff7ea33;
+  border: 1px solid #fff7ea77;
+  border-radius: 50%;
+  height: 44px;
+  width: 44px;
+  color: #fff8ed;
+}
+.real-swipe-copy {
+  position: absolute;
+  left: 22px;
+  right: 20px;
+  bottom: 22px;
+  color: #fff8ed;
+}
+.real-swipe-copy .dm-kicker {
+  color: #ddd4aa;
+  font-size: 8px;
+}
+.real-swipe-copy h2 {
+  font-size: 31px;
+  font-weight: 600;
+  margin: 9px 0;
+  letter-spacing: -0.6px;
+}
+.real-swipe-copy > p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #e7d7e4;
+  max-height: 90px;
+  overflow: auto;
+  margin: 5px 0;
+}
+.real-swipe-copy .dm-room-tags > span {
+  border-color: #fff4de55;
+  background: #fff4de22;
+  color: #fff8ed;
+  font-size: 9px;
+}
+.real-reaction {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
+  width: 220px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #b98bc6, #cd8fae);
+  box-shadow: 0 10px 35px #7e517c44;
+  border: 1px solid #efd0e7;
+  color: #fff3e9;
+  font-size: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.real-post-form {
+  padding: 20px;
+  background: #fff7eacc;
+  border: 1px solid #dbc2a5;
+  border-radius: 18px;
+  margin: 25px 0;
+}
+.real-post {
+  border: 1px solid #d7bfa2;
+  background: #f8eedfcc;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 18px 0;
+}
+.real-post strong {
+  font-size: 13px;
+  color: #937096;
+}
+.real-post p {
+  font-size: 13px;
+  color: #a08497;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.real-post button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #b18cac;
+  min-height: 40px;
+}
+.real-call-safety {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 17px 0 0;
+}
+.real-call-safety button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d3b2c7;
+  background: #efe0eb;
+  padding: 12px 15px;
+  border-radius: 12px;
+  color: #a4779d;
+  min-height: 44px;
+  font-size: 12px;
+}
+.rtc-surface {
+  max-width: 1000px;
+  margin: auto;
+}
+.rtc-surface .room {
+  background: #fff9ef;
+  border-color: #d5bca1;
+}
+.rtc-surface .room-top {
+  background: #eee4d6;
+}
+.rtc-surface .lobby {
+  background: radial-gradient(#f7eee0, #fff9ef);
+  padding: 30px 18px;
+}
+.rtc-surface .lobby h2 {
+  color: #8d6c94;
+}
+.rtc-surface .room-bottom {
+  background: #f4eadc;
+  border-color: #e6d2b9;
+}
+.rtc-surface .join {
+  border-color: #ad86ba;
+  background: #a680b6;
+  color: #fff5eb;
+  margin-top: 12px;
+  box-shadow: 0 3px 0 #835f98;
+}
+.rtc-lobby-choices {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0;
+}
+.rtc-lobby-choices button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 48px;
+  border: 1px solid #d3b7d2;
+  background: #eee1ef;
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #ab87b0;
+  font-size: 12px;
+}
+.rtc-lobby-choices button[aria-pressed="true"] {
+  background: #dbe4be;
+  border-color: #b7c58e;
+  color: #859766;
+}
+.rtc-lobby-choices svg {
+  width: 19px;
+}
+.rtc-low-data {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 12px;
+  color: #aa8bad;
+  margin: 0 0 13px;
+}
+.rtc-low-data input {
+  height: 18px;
+  width: 18px;
+  accent-color: #a17bb6;
+}
+.rtc-surface .tile-label {
+  background: #48384edb;
+}
+.rtc-surface .video-tile {
+  background: #e2d5e7;
+}
+.rtc-surface .filters {
+  border-color: #dccaaf;
+}
+.rtc-surface .controls {
+  flex-wrap: wrap;
+}
+.rtc-surface .room-count {
+  font-size: 10px;
+}
+.rtc-surface .room-badge {
+  background: #e3d5e8;
+  color: #a183ad;
+}
+.rtc-surface .room-top strong {
+  color: #907194;
+}
+.rtc-surface .permission-note {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.8;
+}
+.rtc-surface .waiting {
+  border-color: #d0b7d7;
+}
+.rtc-surface .waiting h3 {
+  color: #9e7aa9;
+}
+.rtc-surface .waiting p {
+  color: #b295b7;
+}
+.dm-primary:disabled {
+  cursor: default;
+}
+.signed-out .dm-main {
+  padding-bottom: 35px;
+}
+@keyframes queue-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #cbb3dc00;
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 14px #cbb3dc22;
+  }
+}
+@media (max-width: 720px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .real-auth {
+    padding: 26px 22px;
+    margin: 10px 0 25px;
+  }
+  .real-auth h1 {
+    font-size: 34px;
+  }
+  .real-auth h1 em {
+    font-size: 36px;
+  }
+  .real-auth > p {
+    font-size: 13px;
+  }
+  .real-auth .dm-consent {
+    font-size: 10px;
+    line-height: 1.7;
+    align-items: flex-start;
+  }
+  .real-auth .dm-consent svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .real-onboarding {
+    padding: 25px 20px;
+    margin: 0 0 20px;
+  }
+  .real-onboarding h1 {
+    font-size: 30px;
+  }
+  .real-onboarding > p {
+    font-size: 13px;
+  }
+  .real-photo-manager {
+    padding: 18px 15px;
+  }
+  .real-private-fields {
+    padding: 17px 14px;
+  }
+  .real-photo-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .real-error {
+    margin: 12px 16px;
+    font-size: 12px;
+    padding: 12px 14px;
+  }
+  .real-form-fields .dm-toggle-row {
+    font-size: 12px;
+    gap: 12px;
+  }
+  .real-age-fields {
+    gap: 12px;
+  }
+  .real-form-fields .phone-interest-chips > button {
+    font-size: 11px;
+    padding: 9px 11px;
+  }
+  .real-self .real-avatar,
+  .dm-self > .real-avatar {
+    height: 210px;
+    font-size: 70px;
+  }
+  .real-messenger {
+    height: calc(100dvh - 68px - env(safe-area-inset-bottom, 0px));
+    min-height: 0;
+    display: block;
+    border: 0;
+    border-radius: 0;
+  }
+  .real-inbox {
+    height: 100%;
+    overflow: auto;
+    border: 0;
+    padding: 27px 18px;
+  }
+  .real-inbox h1 {
+    font-size: 32px;
+    margin-top: 12px;
+  }
+  .real-inbox .dm-page-title {
+    padding: 0 5px;
+    margin-bottom: 27px;
+  }
+  .real-thread {
+    min-height: 88px;
+    padding: 17px 13px;
+    gap: 13px;
+  }
+  .real-thread > img,
+  .real-thread > .real-avatar {
+    height: 46px;
+    width: 46px;
+    font-size: 23px;
+  }
+  .real-thread strong {
+    font-size: 14px;
+  }
+  .real-thread small {
+    font-size: 12px;
+  }
+  .real-conversation {
+    display: none;
+    height: 100%;
+  }
+  .real-messenger.has-thread .real-inbox {
+    display: none;
+  }
+  .real-messenger.has-thread .real-conversation {
+    display: flex;
+  }
+  .real-thread-header {
+    min-height: 73px;
+    padding: 12px 10px;
+    gap: 4px;
+  }
+  .real-thread-header > button:not(.real-chat-person) {
+    width: 38px;
+    min-width: 38px;
+    height: 44px;
+  }
+  .real-chat-back {
+    display: grid !important;
+  }
+  .real-chat-person {
+    gap: 8px;
+  }
+  .real-chat-person > img,
+  .real-chat-person > .real-avatar {
+    height: 36px;
+    width: 36px;
+    font-size: 18px;
+  }
+  .real-chat-person strong {
+    font-size: 13px;
+    max-width: 130px;
+  }
+  .real-chat-body {
+    padding: 24px 17px;
+    gap: 16px;
+  }
+  .real-message p {
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 12px 15px;
+  }
+  .real-message time {
+    font-size: 9px;
+  }
+  .real-chat-welcome {
+    padding: 30px 20px;
+  }
+  .real-chat-welcome h3 {
+    font-size: 19px;
+  }
+  .real-chat-welcome p {
+    font-size: 12px;
+  }
+  .real-composer {
+    margin: 10px 13px 15px;
+    padding: 6px;
+  }
+  .real-composer textarea {
+    font-size: 16px;
+    padding: 9px 7px;
+  }
+  .real-composer button {
+    height: 43px;
+    width: 43px;
+  }
+  .real-chat-screen {
+    height: 100%;
+  }
+  .dm-page-chats .dm-main {
+    padding: 0;
+  }
+  .dm-page-call .dm-main {
+    padding-top: 12px;
+    padding-bottom: 25px;
+  }
+  .dm-page-call .dm-header {
+    height: 61px;
+  }
+  .rtc-surface .room-top {
+    padding: 0 12px;
+    min-height: 60px;
+    height: auto;
+    gap: 10px;
+  }
+  .rtc-surface .room-top > div {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .rtc-surface .room-top strong {
+    font-size: 11px;
+  }
+  .rtc-surface .room-badge {
+    font-size: 6px;
+  }
+  .rtc-surface .room-count {
+    font-size: 8px;
+    white-space: nowrap;
+  }
+  .rtc-surface .lobby h2 {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .rtc-surface .lobby > p {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 270px;
+  }
+  .rtc-lobby-choices {
+    gap: 10px;
+  }
+  .rtc-lobby-choices button {
+    font-size: 11px;
+    padding: 12px 13px;
+  }
+  .rtc-surface .join {
+    min-height: 49px;
+    width: 220px;
+  }
+  .rtc-surface .permission-note {
+    font-size: 9px;
+    max-width: 270px;
+  }
+  .rtc-surface .room-bottom {
+    font-size: 8px;
+    padding: 12px;
+  }
+  .rtc-surface .filters-heading small {
+    font-size: 9px;
+  }
+  .rtc-surface .enable-sound {
+    min-height: 44px;
+  }
+  .rtc-surface .leave {
+    min-height: 44px;
+  }
+  .real-call-safety button {
+    font-size: 11px;
+    padding: 11px;
+  }
+  .real-profile-photo {
+    height: 32dvh;
+    min-height: 190px;
+  }
+  .real-inline-actions {
+    gap: 9px;
+  }
+  .real-inline-actions button {
+    min-height: 44px;
+  }
+  .real-review-card {
+    padding: 18px 15px;
+  }
+  .real-review-card p {
+    font-size: 12px;
+  }
+  .real-review-label {
+    font-size: 13px;
+  }
+  .real-post-form {
+    padding: 18px;
+  }
+  .real-swipe-copy {
+    left: 20px;
+    bottom: 21px;
+  }
+  .real-swipe-copy h2 {
+    font-size: 31px;
+  }
+  .real-swipe-copy > p {
+    font-size: 12px;
+    max-height: 80px;
+  }
+  .real-swipe-stage {
+    margin: 0 5px;
+  }
+  .real-swipe-copy .dm-room-tags {
+    margin: 12px 0 0;
+  }
+  .real-swipe-copy .dm-room-tags > span {
+    font-size: 9px;
+    padding: 6px 9px;
+  }
+  .dm-page-swipechat .dm-screen {
+    height: 100%;
+  }
+  .dm-page-swipechat .dm-swipe-screen {
+    height: 100%;
+  }
+  .real-swipe-stage .phone-empty {
+    position: absolute;
+    inset: 0;
+  }
+  .real-swipe-stage .phone-empty p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .real-swipe-stage .phone-empty h2 {
+    font-size: 22px;
+  }
+  .dm-page-call .dm-bottom-nav {
+    display: none;
+  }
+  .dm-page-profile .dm-main {
+    padding-bottom: 100px;
+  }
+  .real-photo-list button {
+    height: 35px;
+    width: 35px;
+  }
+  .real-private-fields .real-checkbox {
+    font-size: 11px !important;
+  }
+  .real-auth label {
+    font-size: 13px;
+  }
+  .real-auth input {
+    font-size: 16px;
+  }
+  .real-form-fields .dm-toggle-row > span:first-child {
+    display: block;
+  }
+  .real-form-fields .dm-toggle-row > span:first-child > svg {
+    vertical-align: middle;
+  }
+  .real-form-fields .dm-toggle-row small {
+    max-width: 180px;
+  }
+  .dm-sheet .dm-settings-row {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .dm-sheet label textarea {
+    resize: vertical;
+  }
+}
+@media (max-width: 350px) {
+  .real-auth {
+    padding: 24px 18px;
+  }
+  .real-auth h1 {
+    font-size: 30px;
+  }
+  .real-auth h1 em {
+    font-size: 32px;
+  }
+  .real-onboarding {
+    padding: 22px 17px;
+  }
+  .real-chat-person strong {
+    max-width: 83px;
+  }
+  .real-swipe-copy h2 {
+    font-size: 27px;
+  }
+  .real-swipe-copy > p {
+    font-size: 11px;
+    max-height: 65px;
+  }
+  .real-swipe-copy .dm-room-tags > span {
+    font-size: 8px;
+  }
+  .real-photo-manager {
+    padding: 16px 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .real-queue-orbit {
+    animation: none;
+  }
+}
+.tile-safety {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  display: flex;
+  gap: 5px;
+  z-index: 3;
+  flex-wrap: wrap;
+  max-width: 90%;
+  justify-content: flex-end;
+}
+.tile-safety button {
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ffffff44;
+  background: #49334dd9;
+  color: #fff2e8;
+  font-size: 10px;
+  backdrop-filter: blur(7px);
+}
