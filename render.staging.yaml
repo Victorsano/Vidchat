@@ -1,0 +1,30 @@
+# Isolated staging only. The original match-vidchat service is not adopted.
+# The already-created staging DB expires 30 days after creation.
+services:
+  - type: web
+    name: dorcas-backend-staging
+    runtime: node
+    plan: free
+    region: oregon
+    branch: codex/dorcas-backend-integration
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: APP_ORIGIN
+        fromService:
+          type: web
+          name: dorcas-backend-staging
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dorcas-integration-staging-db
+          property: connectionString

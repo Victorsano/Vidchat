@@ -1,92 +1,54 @@
-# MATCH
+# Dorcas Match
 
-A small anonymous group video call built with Next.js, TypeScript, Tailwind CSS and native WebRTC. One shared room, at most six participants. No accounts, cookies, database or paid API. Signaling uses the included `ws` WebSocket server on the same port as Next.js. Media travels directly between browsers; the signaling server does not receive video/audio. Free Google/Cloudflare STUN servers help discover network routes.
+Mobile-first student discovery, mutual matching, persistent messaging and private/native WebRTC calls. The interface preserves the layered-soil Dorcas design, colourful swipe motion and phone-first navigation. This is an independent project, not a Babcock University service.
 
-## Run on your computer
+## Local development
 
-Install Node.js 22+ and npm. Unzip this project, then run:
+Use Node.js 22.16+ and npm. Run `npm ci`, copy `.env.example` to `.env.local`, then run `npm run dev`. Open http://localhost:3000. Without DATABASE_URL, development uses a persistent PGlite database outside the source tree. Production refuses this fallback and requires PostgreSQL.
 
-```sh
-npm ci
-npm run dev
-```
+The application has no seeded student profiles and no development OTP bypass. Local verification requires a configured email sender. `scripts/dev-fixtures.ts` creates explicitly fictional local browser fixtures only; it refuses production or any configured DATABASE_URL. Never upload its ignored `.local` output.
 
-Open http://localhost:3000 in Chrome, Edge, Firefox or Safari. Click **Join Call**, then allow camera and microphone. Devices need both a camera and microphone for this proof of concept. Mute/unmute, camera on/off and Leave Call are available after joining. Leave stops local media tracks and closes peer connections. Closing a browser tab removes that participant; crashed/network-lost tabs are removed by server heartbeat within about 30 seconds. Losing the signaling connection ends the local call and offers a fresh join.
+For the local synthetic two-browser media check, stop the dev server, run `npx tsx scripts/dev-fixtures.ts`, restart `npm run dev`, then run `node scripts/check-browser.mjs` with Microsoft Edge installed. It uses fictional sessions in ignored files and never accesses physical devices.
 
-For a production-mode local run:
+Run `npm test`, `npm run typecheck`, and `npm run build` for validation. `npm run db:migrate` applies versioned migrations. Startup also applies migrations before serving requests.
 
-```sh
-npm run build
-npm start
-```
+## What is connected
 
-`PORT=3001 npm start` selects another port (PowerShell: `$env:PORT=3001; npm start`). Keep one Node process: all room membership lives in memory. Do not run behind a load balancer with multiple instances. This custom WebSocket server requires a persistent Node process; static hosting and ordinary serverless function hosting will not work.
+- Exact `@student.babcock.edu.ng` email eligibility, expiring single-use hashed OTPs, rate limits and revocable HttpOnly sessions.
+- Adult birth-date checks followed by independent moderator review. Profile submission alone cannot activate an account. Dating is separately opt-in.
+- Privacy-aware discovery, reciprocal-like transactions, deduplicated matches and persistent conversations with membership checks and retry-safe message nonces.
+- Live room directories and expiring single-use join tickets, capacity enforcement, room isolation, host removals and session/block revocation.
+- Quick Match requires both accepts. Private call invitations require an existing conversation and recipient acceptance.
+- The original native WebRTC, ICE queue, face effects, audio handling and cleanup. Camera and microphone start off; entry is deliberate. TURN credentials are short-lived when configured.
+- Private photo storage adapter, image decoding/re-encoding, metadata removal, moderation and queued deletion. Campus groups, reviewed posts and moderator-managed events.
+- Reporting, blocking, moderator queues, audit records and account deletion. Production moderator sign-in requires email OTP plus authenticator TOTP.
 
-## Test across phones and PCs, without a paid service
+## Production configuration
 
-`localhost` on a phone refers to the phone, not your PC. Plain HTTP LAN addresses such as `http://192.168.1.20:3000` do not provide camera access in normal browsers. Use a trusted HTTPS address.
+Use one persistent Node service with `npm ci --include=dev && npm run build` and `npm start`. Route HTTP and WebSocket `/signal` to the same instance. Do not add a catch-all Next page that also matches `/signal`: Next's automatic upgrade handler can close that socket. Explicit product routes are intentional. Horizontal scaling requires shared signaling/pub-sub and additional coordination; it is not supported by this beta.
 
-The easiest temporary test is a free Cloudflare Quick Tunnel (no Cloudflare account required):
+Configure secrets directly in the hosting dashboard, never in source control or chat:
 
-1. Install `cloudflared` from https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/ on the computer running MATCH.
-2. Start MATCH using the commands above.
-3. In a second terminal run:
+| Variables | Purpose |
+| --- | --- |
+| DATABASE_URL | PostgreSQL connection URL; use the internal connection in Render's region |
+| APP_ORIGIN | Exact HTTPS app origin, without trailing slash |
+| AUTH_SECRET | Strong random secret for OTP hashing |
+| RESEND_API_KEY, EMAIL_FROM | HTTPS email delivery from a domain you control and have verified |
+| S3_ENDPOINT, S3_BUCKET, S3_REGION, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY | Private S3-compatible storage with path-style access; keep bucket public access disabled |
+| TURN_URLS, TURN_SECRET | Comma-separated coturn URLs and matching shared authentication secret |
+| ADMIN_EMAILS, ADMIN_TOTP_SECRETS | Explicit moderator allowlist and JSON mapping from email to Base32 authenticator secret, provisioned out of band |
 
-   ```sh
-   cloudflared tunnel --url http://localhost:3000
-   ```
+A student's university mailbox is a verification recipient; it does not authorize sending from the university domain. The selected separate Dorcas sender domain has not yet been supplied. No existing unrelated brand's domain is reused. Do not make a student an administrator just to enable sign-in.
 
-4. Copy the generated `https://…trycloudflare.com` URL. Open the **same URL** on every phone/PC. The tunnel forwards both HTTP and secure WebSocket signaling. No separately configured signaling URL or port is needed.
-5. Click Join Call and allow camera/microphone on each device. Use headphones or keep the devices in separate rooms to avoid acoustic feedback.
-6. Start with two devices on the same Wi-Fi, then three. Next put one phone on mobile data and repeat. Add devices up to six. Each device sends one media copy per peer, so bandwidth and CPU usage grow with room size. The default target capture is 640×360 at 24 fps (max 30).
-7. Verify remote video/audio, mute, camera off/on, leave and rejoin, closing a tab, denying permission and the seventh participant being refused. A muted participant's video should continue; turning off the camera should preserve audio. On iOS, keep Safari in the foreground. Tap “Tap to play audio” if browser autoplay is blocked.
+`/api/health` checks the database and reports configuration flags for email, storage and TURN. Flags confirm configuration presence, not real provider operation. Test actual delivery, upload/download/deletion and relay-only calls before opening a beta.
 
-Keep the app and tunnel processes running for the whole test. A Quick Tunnel URL is public and temporary; anyone with it can enter the single shared room. Sharing a new tunnel URL does not create a separate room on the same server. Quick Tunnels are free testing infrastructure with availability/usage limits, not an uptime guarantee.
+`render.staging.yaml` targets a separate staging service and references the isolated staging database. The original `render.yaml` and original main-branch service are retained. Staging has no production student data. The temporary staging database expires in December 2026; migrate or replace it before then.
 
-Alternative: use an HTTPS reverse proxy with a trusted certificate on your LAN. Forward WebSocket upgrades at `/signal` along with normal HTTP requests, and preserve the original Host header. You must install/trust any private certificate authority on every device. Do not disable browser security to get camera access.
+## Release checks still requiring real infrastructure and people
 
-## Connectivity limits and diagnostics
+Use two independently approved test accounts and HTTPS. Verify actual email delivery, photo moderation and private access, reciprocal matching, durable chat after restart, logout/revocation and deletion. Staff the independent age-review and reporting process before admitting students.
 
-STUN is not a media relay. Some symmetric NATs, corporate firewalls and mobile networks cannot establish a direct route. HTTPS tunneling solves camera access and signaling reachability, but does not relay WebRTC media. If two guests remain “Connecting…” or show “Connection failed,” try the same Wi-Fi, disable VPN temporarily if appropriate, or test another network. Use `chrome://webrtc-internals` (Chrome/Edge) or `about:webrtc` (Firefox) to inspect ICE candidate pairs, packet loss and bitrate. Log those observations on each device to assess video quality; a successful signaling test does not prove media connectivity.
+For media, use physical devices on the same Wi-Fi and then different Wi-Fi/mobile networks. Verify two-way sound/video, permission denial, device-off entry, turning devices on during a call, reconnection, capacity rejection, host removal, block, leave and rejoin. Confirm a relay-only call using configured TURN and inspect candidate-pair stats. Local synthetic browser media tests do not establish real-device or cross-network reliability. Other participants may record externally and peer-to-peer calls can expose network addresses to participants; the app does not record calls.
 
-For reliable connectivity on those networks you need a TURN relay, such as the free open-source coturn server on a machine with a public IP. Software is free; hosting and bandwidth may cost money. This project intentionally does not depend on a paid relay or include public TURN credentials. To add your own, extend `iceServers` in `app/page.tsx` with your TURN URL and credentials; use short-lived credentials for any public deployment.
-
-Anonymity here means no application registration or personal information collection. Peers can learn one another's IP addresses through WebRTC; the host/tunnel/STUN operator may observe network metadata. The app does not record, but other participants can record externally. Guest labels are generated from random, per-connection IDs and reset on rejoin.
-
-## Validation
-
-```sh
-npm test
-npm run typecheck
-npm run build
-```
-
-The automated test uses real WebSocket clients to verify shared membership, directed signaling, media status, disconnect removal and the six-person cap. It does not emulate cameras or verify media quality across physical devices. Complete the device checklist above before drawing connectivity conclusions.
-
-## Files
-
-- `app/page.tsx`: responsive lobby/call UI, permissions, peer connections, ICE buffering and cleanup.
-- `app/globals.css`: Tailwind entry plus responsive visual styling.
-- `signaling.ts`: ephemeral room, validated signaling routing, capacity, payload/rate limits and heartbeat.
-- `server.ts`: shared Next.js HTTP/WebSocket server.
-- `tests/signaling.test.ts`: multi-client protocol integration test.
-
-## Deploy to Render (free)
-
-Commit this project to a GitHub repository. In Render, select **New → Blueprint**, connect that repository, and apply `render.yaml`. Alternatively select **New → Web Service**, connect the repository, choose **Node** and **Free**, set build command to `npm ci --include=dev && npm run build` and start command to `npm start`. Render supplies `PORT` and HTTPS automatically. Use one instance; all callers must open the same `https://…onrender.com` URL. WebSocket signaling upgrades at `/signal` on this same address.
-
-The free instance can sleep when inactive; opening the site may take a minute to wake it. Monthly free usage limits apply. Restarts/deployments disconnect all participants. No paid plan is required for this proof of concept. After deployment repeat the phone/PC checklist above using the Render URL instead of a tunnel.
-
-## Face filters
-
-After joining, choose **None**, **Bunny ears**, **Nose mask**, or **Eye patch** under the video tiles. Face detection runs locally with MediaPipe Tasks Vision; model and WebAssembly assets are served by this app. No photos or landmarks are uploaded for detection. Other participants receive the composited video through WebRTC. The face detector loads only when you choose a filter; allow a few seconds on a mobile connection. Center one face in good light. Overlays disappear when a face is no longer detected. These are lightweight 2D effects, not Snapchat SDK integration.
-
-Detection runs at most 10 times per second; video composition targets 24 fps. Turning the camera off disables the source camera track and outgoing video. Leaving stops camera, audio, detector and canvas capture. If canvas capture is unavailable, the call uses the original camera and disables filter selection. On load failure, select None or another filter to retry. Device performance and background-tab throttling can reduce frame rate; physical phone/PC validation is still required.
-
-MediaPipe Tasks Vision and its bundled WASM assets are Apache-2.0 licensed; the package license is retained in `public/face-effects/`. The BlazeFace short-range model is from Google's public MediaPipe model distribution.
-
-The nose mask uses a separate, lazily loaded MediaPipe Face Landmarker model for its fit: the upper edge follows the nose bridge, sides follow each cheek independently, and the lower edge follows the jaw and chin. This also changes the two sides asymmetrically as the face turns. The landmarker targets at most 12.5 updates per second. Bunny ears and eye patch retain their original lightweight detector. The additional mask model is served locally from `public/face-effects/face-landmarker.task`.
-
-### Mobile audio troubleshooting
-
-After joining, tap **Enable sound** on each phone if you cannot hear guests; browsers may require another tap before playing remote audio. Guest video is muted and remote sound uses a separate audio element, so camera visibility does not control sound playback. A guest-specific **Tap to hear this guest** button appears if playback is blocked. Keep both microphones unmuted and media volume raised. Use headphones when testing two phones in one room. Peer negotiation messages are processed sequentially and a failed outgoing connection gets one ICE restart. If a tile remains “Still connecting” even on the same Wi-Fi, check router guest/client isolation; TURN can still be required on restrictive networks. The app does not yet include a TURN relay.
+See [implementation checkpoints](docs/IMPLEMENTATION.md) for evidence and remaining launch gates.
